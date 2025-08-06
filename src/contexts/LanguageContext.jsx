@@ -11,7 +11,7 @@ export const useLanguage = () => {
 };
 
 export const LanguageProvider = ({ children }) => {
-  const [language, setLanguage] = useState('zh');
+  const [language, setLanguage] = useState('en');
 
   useEffect(() => {
     // 从 URL 路径获取语言设置
@@ -21,8 +21,8 @@ export const LanguageProvider = ({ children }) => {
     } else if (path.startsWith('/zh')) {
       setLanguage('zh');
     } else {
-      // 默认中文
-      setLanguage('zh');
+      // 默认英文
+      setLanguage('en');
     }
   }, []);
 

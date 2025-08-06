@@ -29,7 +29,6 @@ export const translations = {
     wechatHeader: "微信头图",
     xiaohongshu: "小红书",
     ecommerce: "电商商品",
-    // 国外APP头像尺寸
     instagram: "Instagram头像",
     threads: "Threads头像",
     facebook: "Facebook头像",
@@ -121,7 +120,6 @@ export const translations = {
     wechatHeader: "WeChat Header",
     xiaohongshu: "Xiaohongshu",
     ecommerce: "E-commerce Product",
-    // International APP avatar sizes
     instagram: "Instagram Avatar",
     threads: "Threads Avatar",
     facebook: "Facebook Avatar",

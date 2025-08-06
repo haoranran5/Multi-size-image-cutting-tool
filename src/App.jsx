@@ -24,8 +24,8 @@ const App = () => {
               </div>
               
               <Routes>
-                {/* 重定向根路径到中文版本 */}
-                <Route path="/" element={<Navigate to="/zh" replace />} />
+                {/* 重定向根路径到英文版本 */}
+                <Route path="/" element={<Navigate to="/en" replace />} />
                 
                 {/* 中文路由 */}
                 <Route path="/zh" element={mainPage} />
@@ -33,8 +33,8 @@ const App = () => {
                 {/* 英文路由 */}
                 <Route path="/en" element={mainPage} />
                 
-                {/* 捕获所有其他路由，重定向到中文版本 */}
-                <Route path="*" element={<Navigate to="/zh" replace />} />
+                {/* 捕获所有其他路由，重定向到英文版本 */}
+                <Route path="*" element={<Navigate to="/en" replace />} />
               </Routes>
             </div>
           </BrowserRouter>

@@ -18,12 +18,9 @@ const ImageSlicer = () => {
   const { language } = useLanguage();
   
   const PRESET_SIZES = [
-    // 国内平台尺寸
     { id: 1, width: 1200, height: 510, name: t('wechatHeader', language) },
     { id: 2, width: 1242, height: 1660, name: t('xiaohongshu', language) },
     { id: 3, width: 800, height: 800, name: t('ecommerce', language) },
-    
-    // 国外APP头像尺寸
     { id: 4, width: 320, height: 320, name: t('instagram', language) },
     { id: 5, width: 320, height: 320, name: t('threads', language) },
     { id: 6, width: 170, height: 170, name: t('facebook', language) },
@@ -381,58 +378,27 @@ const ImageSlicer = () => {
                   </TabsList>
                   
                   <TabsContent value="presets">
-                    <div className="space-y-4 mt-4">
-                      {/* 国内平台尺寸 */}
-                      <div>
-                        <h4 className="font-medium text-sm text-gray-700 mb-2">{language === 'zh' ? '国内平台' : 'Domestic Platforms'}</h4>
-                        <div className="grid grid-cols-2 gap-3">
-                          {PRESET_SIZES.slice(0, 3).map((size) => (
-                            <div key={size.id} className="border rounded-lg p-3 flex justify-between items-center">
-                              <div>
-                                <p className="font-medium text-sm">{size.name}</p>
-                                <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
-                              </div>
-                              {!selectedSizes.some(s => s.id === size.id) ? (
-                                <Button 
-                                  variant="outline"
-                                  size="sm"
-                                  onClick={() => setSelectedSizes([...selectedSizes, size])}
-                                >
-                                  <PlusIcon className="h-3 w-3" />
-                                </Button>
-                              ) : (
-                                <span className="text-xs text-green-500">{t('added', language)}</span>
-                              )}
+                    <div className="mt-4">
+                      <div className="grid grid-cols-2 gap-3">
+                        {PRESET_SIZES.map((size) => (
+                          <div key={size.id} className="border rounded-lg p-3 flex justify-between items-center">
+                            <div>
+                              <p className="font-medium text-sm">{size.name}</p>
+                              <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
                             </div>
-                          ))}
-                        </div>
-                      </div>
-                      
-                      {/* 国外APP头像尺寸 */}
-                      <div>
-                        <h4 className="font-medium text-sm text-gray-700 mb-2">{language === 'zh' ? '国外APP头像' : 'International APP Avatars'}</h4>
-                        <div className="grid grid-cols-3 gap-2">
-                          {PRESET_SIZES.slice(3, 15).map((size) => (
-                            <div key={size.id} className="border rounded-lg p-2 flex justify-between items-center">
-                              <div>
-                                <p className="font-medium text-xs">{size.name}</p>
-                                <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
-                              </div>
-                              {!selectedSizes.some(s => s.id === size.id) ? (
-                                <Button 
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-6 w-6 p-0"
-                                  onClick={() => setSelectedSizes([...selectedSizes, size])}
-                                >
-                                  <PlusIcon className="h-3 w-3" />
-                                </Button>
-                              ) : (
-                                <span className="text-xs text-green-500">{t('added', language)}</span>
-                              )}
-                            </div>
-                          ))}
-                        </div>
+                            {!selectedSizes.some(s => s.id === size.id) ? (
+                              <Button 
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setSelectedSizes([...selectedSizes, size])}
+                              >
+                                <PlusIcon className="h-3 w-3" />
+                              </Button>
+                            ) : (
+                              <span className="text-xs text-green-500">{t('added', language)}</span>
+                            )}
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </TabsContent>
