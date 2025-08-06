@@ -11,14 +11,33 @@ import { Progress } from '@/components/ui/progress';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import ImagePreview from '@/components/ImagePreview';
-
-const PRESET_SIZES = [
-  { id: 1, width: 1200, height: 510, name: '微信头图' },
-  { id: 2, width: 1242, height: 1660, name: '小红书' },
-  { id: 3, width: 800, height: 800, name: '电商商品' },
-];
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t } from '@/translations';
 
 const ImageSlicer = () => {
+  const { language } = useLanguage();
+  
+  const PRESET_SIZES = [
+    // 国内平台尺寸
+    { id: 1, width: 1200, height: 510, name: t('wechatHeader', language) },
+    { id: 2, width: 1242, height: 1660, name: t('xiaohongshu', language) },
+    { id: 3, width: 800, height: 800, name: t('ecommerce', language) },
+    
+    // 国外APP头像尺寸
+    { id: 4, width: 320, height: 320, name: t('instagram', language) },
+    { id: 5, width: 320, height: 320, name: t('threads', language) },
+    { id: 6, width: 170, height: 170, name: t('facebook', language) },
+    { id: 7, width: 400, height: 400, name: t('twitter', language) },
+    { id: 8, width: 400, height: 400, name: t('linkedin', language) },
+    { id: 9, width: 800, height: 800, name: t('youtube', language) },
+    { id: 10, width: 200, height: 200, name: t('tiktok', language) },
+    { id: 11, width: 192, height: 192, name: t('whatsapp', language) },
+    { id: 12, width: 512, height: 512, name: t('telegram', language) },
+    { id: 13, width: 128, height: 128, name: t('discord', language) },
+    { id: 14, width: 300, height: 300, name: t('snapchat', language) },
+    { id: 15, width: 165, height: 165, name: t('pinterest', language) },
+  ];
+
   const [originalImage, setOriginalImage] = useState(null);
   const [imageInfo, setImageInfo] = useState({ width: 0, height: 0, size: 0, format: '' });
   const [selectedSizes, setSelectedSizes] = useState([...PRESET_SIZES]);
@@ -43,12 +62,12 @@ const ImageSlicer = () => {
     if (!file) return;
     
     if (!file.type.match('image.*')) {
-      alert('请上传图片文件 (PNG, JPG, WebP)');
+      alert(t('uploadImageError', language));
       return;
     }
     
     if (file.size > 10 * 1024 * 1024) {
-      alert('文件大小不能超过10MB');
+      alert(t('fileSizeError', language));
       return;
     }
     
@@ -86,7 +105,7 @@ const ImageSlicer = () => {
       id: Date.now(),
       width: parseInt(customSize.width),
       height: parseInt(customSize.height),
-      name: customSize.name || `自定义 ${customSize.width}x${customSize.height}`
+      name: customSize.name || `${t('custom', language)} ${customSize.width}x${customSize.height}`
     };
     
     setCustomSizes([...customSizes, newSize]);
@@ -97,7 +116,9 @@ const ImageSlicer = () => {
   const removeSize = (id) => {
     setSelectedSizes(selectedSizes.filter(size => size.id !== id));
     
-    if (id > 3) {
+    // 只有自定义尺寸才需要从 customSizes 中移除
+    // 预设尺寸的 id 是 1-15，自定义尺寸的 id 是时间戳
+    if (id > 15) {
       setCustomSizes(customSizes.filter(size => size.id !== id));
     }
   };
@@ -220,7 +241,7 @@ const ImageSlicer = () => {
       }, 100);
     } catch (error) {
       console.error('下载失败:', error);
-      alert('图片下载失败，请重试');
+      alert(t('downloadError', language));
       setDownloading(false);
     }
   };
@@ -245,10 +266,10 @@ const ImageSlicer = () => {
       }
       
       const content = await zip.generateAsync({ type: "blob" });
-      saveAs(content, "切割图片.zip");
+      saveAs(content, language === 'zh' ? "切割图片.zip" : "sliced_images.zip");
     } catch (error) {
       console.error('打包下载失败:', error);
-      alert('打包下载失败，请重试');
+      alert(t('packageDownloadError', language));
     } finally {
       setDownloading(false);
       setDownloadProgress(0);
@@ -258,8 +279,8 @@ const ImageSlicer = () => {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-6xl rounded">
-        <h1 className="text-3xl font-bold text-center mb-2 text-blue-600">多尺寸图片切割工具</h1>
-        <p className="text-center text-gray-600 mb-8">快速生成适配不同平台的图片尺寸</p>
+        <h1 className="text-3xl font-bold text-center mb-2 text-blue-600">{t('title', language)}</h1>
+        <p className="text-center text-gray-600 mb-8">{t('subtitle', language)}</p>
         
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧配置区域 - 占2/3 */}
@@ -269,7 +290,7 @@ const ImageSlicer = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <UploadIcon className="h-5 w-5" />
-                  上传图片
+                  {t('uploadTitle', language)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -282,10 +303,10 @@ const ImageSlicer = () => {
                   >
                     <div className="flex flex-col items-center justify-center gap-3">
                       <UploadIcon className="h-12 w-12 text-blue-400" />
-                      <p className="font-medium">拖放图片到此处或点击上传</p>
-                      <p className="text-sm text-gray-500">支持 PNG, JPG, WebP 格式 (最大10MB)</p>
+                      <p className="font-medium">{t('uploadHint', language)}</p>
+                      <p className="text-sm text-gray-500">{t('uploadSupport', language)}</p>
                       <Button variant="outline" className="mt-2 bg-white">
-                        选择文件
+                        {t('selectFile', language)}
                       </Button>
                     </div>
                     <input 
@@ -317,25 +338,25 @@ const ImageSlicer = () => {
                     
                     <div className="grid grid-cols-2 gap-4 w-full">
                       <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">尺寸</p>
+                        <p className="text-sm text-gray-500">{t('dimensions', language)}</p>
                         <p className="font-medium">{imageInfo.width} × {imageInfo.height} px</p>
                       </div>
                       <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">大小</p>
+                        <p className="text-sm text-gray-500">{t('fileSize', language)}</p>
                         <p className="font-medium">{imageInfo.size}</p>
                       </div>
                       <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">格式</p>
+                        <p className="text-sm text-gray-500">{t('format', language)}</p>
                         <p className="font-medium">{imageInfo.format}</p>
                       </div>
                       <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">操作</p>
+                        <p className="text-sm text-gray-500">{t('operations', language)}</p>
                         <Button 
                           variant="outline" 
                           size="sm"
                           onClick={() => fileInputRef.current.click()}
                         >
-                          更换图片
+                          {t('replaceImage', language)}
                         </Button>
                       </div>
                     </div>
@@ -349,37 +370,70 @@ const ImageSlicer = () => {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <ScissorsIcon className="h-5 w-5" />
-                  尺寸配置
+                  {t('sizeConfigTitle', language)}
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <Tabs defaultValue="presets" className="mb-4">
                   <TabsList className="grid grid-cols-2 w-full">
-                    <TabsTrigger value="presets">预设尺寸</TabsTrigger>
-                    <TabsTrigger value="custom">自定义尺寸</TabsTrigger>
+                    <TabsTrigger value="presets">{t('presetSizes', language)}</TabsTrigger>
+                    <TabsTrigger value="custom">{t('customSizes', language)}</TabsTrigger>
                   </TabsList>
                   
                   <TabsContent value="presets">
-                    <div className="grid grid-cols-2 gap-3 mt-4">
-                      {PRESET_SIZES.map((size) => (
-                        <div key={size.id} className="border rounded-lg p-3 flex justify-between items-center">
-                          <div>
-                            <p className="font-medium">{size.name}</p>
-                            <p className="text-sm text-gray-500">{size.width} × {size.height} px</p>
-                          </div>
-                          {!selectedSizes.some(s => s.id === size.id) ? (
-                            <Button 
-                              variant="outline"
-                              size="sm"
-                              onClick={() => setSelectedSizes([...selectedSizes, size])}
-                            >
-                              <PlusIcon className="h-4 w-4" />
-                            </Button>
-                          ) : (
-                            <span className="text-sm text-green-500">已添加</span>
-                          )}
+                    <div className="space-y-4 mt-4">
+                      {/* 国内平台尺寸 */}
+                      <div>
+                        <h4 className="font-medium text-sm text-gray-700 mb-2">{language === 'zh' ? '国内平台' : 'Domestic Platforms'}</h4>
+                        <div className="grid grid-cols-2 gap-3">
+                          {PRESET_SIZES.slice(0, 3).map((size) => (
+                            <div key={size.id} className="border rounded-lg p-3 flex justify-between items-center">
+                              <div>
+                                <p className="font-medium text-sm">{size.name}</p>
+                                <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
+                              </div>
+                              {!selectedSizes.some(s => s.id === size.id) ? (
+                                <Button 
+                                  variant="outline"
+                                  size="sm"
+                                  onClick={() => setSelectedSizes([...selectedSizes, size])}
+                                >
+                                  <PlusIcon className="h-3 w-3" />
+                                </Button>
+                              ) : (
+                                <span className="text-xs text-green-500">{t('added', language)}</span>
+                              )}
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      </div>
+                      
+                      {/* 国外APP头像尺寸 */}
+                      <div>
+                        <h4 className="font-medium text-sm text-gray-700 mb-2">{language === 'zh' ? '国外APP头像' : 'International APP Avatars'}</h4>
+                        <div className="grid grid-cols-3 gap-2">
+                          {PRESET_SIZES.slice(3, 15).map((size) => (
+                            <div key={size.id} className="border rounded-lg p-2 flex justify-between items-center">
+                              <div>
+                                <p className="font-medium text-xs">{size.name}</p>
+                                <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
+                              </div>
+                              {!selectedSizes.some(s => s.id === size.id) ? (
+                                <Button 
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-6 w-6 p-0"
+                                  onClick={() => setSelectedSizes([...selectedSizes, size])}
+                                >
+                                  <PlusIcon className="h-3 w-3" />
+                                </Button>
+                              ) : (
+                                <span className="text-xs text-green-500">{t('added', language)}</span>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </TabsContent>
                   
@@ -387,7 +441,7 @@ const ImageSlicer = () => {
                     <div className="space-y-4 mt-4">
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="width">宽度 (px)</Label>
+                          <Label htmlFor="width">{t('width', language)}</Label>
                           <Input 
                             id="width" 
                             type="number" 
@@ -397,7 +451,7 @@ const ImageSlicer = () => {
                           />
                         </div>
                         <div>
-                          <Label htmlFor="height">高度 (px)</Label>
+                          <Label htmlFor="height">{t('height', language)}</Label>
                           <Input 
                             id="height" 
                             type="number" 
@@ -409,10 +463,10 @@ const ImageSlicer = () => {
                       </div>
                       
                       <div>
-                        <Label htmlFor="sizeName">尺寸名称 (可选)</Label>
+                        <Label htmlFor="sizeName">{t('sizeName', language)}</Label>
                         <Input 
                           id="sizeName" 
-                          placeholder="例如：海报尺寸"
+                          placeholder={t('sizeNamePlaceholder', language)}
                           value={customSize.name}
                           onChange={(e) => setCustomSize({...customSize, name: e.target.value})}
                         />
@@ -424,14 +478,14 @@ const ImageSlicer = () => {
                         disabled={!customSize.width || !customSize.height}
                       >
                         <PlusIcon className="h-4 w-4 mr-2" />
-                        添加自定义尺寸
+                        {t('addCustomSize', language)}
                       </Button>
                     </div>
                   </TabsContent>
                 </Tabs>
                 
                 <div className="mt-6">
-                  <h3 className="font-medium mb-3">已选尺寸 ({selectedSizes.length})</h3>
+                  <h3 className="font-medium mb-3">{t('selectedSizes', language)} ({selectedSizes.length})</h3>
                   <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
                     {selectedSizes.map((size) => (
                       <div key={size.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
@@ -456,13 +510,13 @@ const ImageSlicer = () => {
             {/* 切割参数配置卡片 */}
             <Card>
               <CardHeader>
-                <CardTitle>切割参数设置</CardTitle>
+                <CardTitle>{t('sliceParamsTitle', language)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="mode">切割模式</Label>
+                  <Label htmlFor="mode">{t('sliceMode', language)}</Label>
                   <div className="flex items-center gap-3">
-                    <span className={sliceSettings.mode === 'crop' ? 'font-medium' : 'text-gray-500'}>裁剪</span>
+                    <span className={sliceSettings.mode === 'crop' ? 'font-medium' : 'text-gray-500'}>{t('crop', language)}</span>
                     <Switch 
                       id="mode"
                       checked={sliceSettings.mode === 'fit'}
@@ -471,13 +525,13 @@ const ImageSlicer = () => {
                         mode: checked ? 'fit' : 'crop'
                       })}
                     />
-                    <span className={sliceSettings.mode === 'fit' ? 'font-medium' : 'text-gray-500'}>适配</span>
+                    <span className={sliceSettings.mode === 'fit' ? 'font-medium' : 'text-gray-500'}>{t('fit', language)}</span>
                   </div>
                 </div>
                 
                 {sliceSettings.mode === 'fit' && (
                   <div>
-                    <Label htmlFor="fillColor">空白填充颜色</Label>
+                    <Label htmlFor="fillColor">{t('fillColor', language)}</Label>
                     <div className="flex items-center gap-3 mt-1">
                       <input 
                         type="color" 
@@ -495,7 +549,7 @@ const ImageSlicer = () => {
                 )}
                 
                 <div>
-                  <Label htmlFor="outputFormat">输出格式</Label>
+                  <Label htmlFor="outputFormat">{t('outputFormat', language)}</Label>
                   <Select 
                     value={sliceSettings.outputFormat}
                     onValueChange={(value) => setSliceSettings({
@@ -504,10 +558,10 @@ const ImageSlicer = () => {
                     })}
                   >
                     <SelectTrigger className="w-full mt-1">
-                      <SelectValue placeholder="选择输出格式" />
+                      <SelectValue placeholder={t('outputFormat', language)} />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="original">同原图格式</SelectItem>
+                      <SelectItem value="original">{t('originalFormat', language)}</SelectItem>
                       <SelectItem value="png">PNG</SelectItem>
                       <SelectItem value="jpg">JPG</SelectItem>
                       <SelectItem value="webp">WebP</SelectItem>
@@ -525,7 +579,7 @@ const ImageSlicer = () => {
                 disabled={!originalImage || selectedSizes.length === 0 || processing}
               >
                 <ScissorsIcon className="h-5 w-5 mr-2" />
-                开始切割
+                {t('startSlicing', language)}
               </Button>
               
               <Button 
@@ -534,7 +588,7 @@ const ImageSlicer = () => {
                 onClick={resetAll}
               >
                 <Trash2Icon className="h-5 w-5 mr-2" />
-                重置
+                {t('reset', language)}
               </Button>
             </div>
           </div>
@@ -545,12 +599,12 @@ const ImageSlicer = () => {
             {processing && (
               <Card className="mb-6">
                 <CardHeader>
-                  <CardTitle>处理中...</CardTitle>
+                  <CardTitle>{t('processing', language)}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <Progress value={progress} className="h-3" />
                   <p className="text-center mt-2 text-gray-600">
-                    正在生成 {selectedSizes.length} 种尺寸的图片 ({progress}%)
+                    {t('processingText', language, { count: selectedSizes.length, progress })}
                   </p>
                 </CardContent>
               </Card>
@@ -560,14 +614,14 @@ const ImageSlicer = () => {
             {!processing && results.length === 0 && (
               <Card>
                 <CardHeader>
-                  <CardTitle>切割结果预览</CardTitle>
+                  <CardTitle>{t('resultPreviewTitle', language)}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
                     <div className="text-center p-4">
                       <ScissorsIcon className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-                      <p className="text-gray-500 font-medium">切割完成后的图片将在这里显示</p>
-                      <p className="text-sm text-gray-400 mt-2">上传图片并选择尺寸后点击"开始切割"</p>
+                      <p className="text-gray-500 font-medium">{t('resultPreviewHint', language)}</p>
+                      <p className="text-sm text-gray-400 mt-2">{t('resultPreviewSubHint', language)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -579,7 +633,7 @@ const ImageSlicer = () => {
               <Card>
                 <CardHeader>
                   <div className="flex justify-between items-center mb-2">
-                    <CardTitle>切割结果</CardTitle>
+                    <CardTitle>{t('sliceResults', language)}</CardTitle>
 
                     <Button 
                       variant="secondary"
@@ -592,12 +646,12 @@ const ImageSlicer = () => {
                       {downloading ? (
                         <>
                           <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
-                          打包中 ({downloadProgress}%)
+                          {t('packaging', language, { progress: downloadProgress })}
                         </>
                       ) : (
                         <>
                           <DownloadIcon className="h-4 w-4 mr-2" />
-                          打包下载全部
+                          {t('downloadAll', language)}
                         </>
                       )}
                     </Button>
@@ -606,7 +660,7 @@ const ImageSlicer = () => {
                     {/* 新增移动端操作提示 */}
                     <div className="p-2 bg-blue-50 rounded-lg block">
                       <p className="text-sm text-blue-700 ">
-                        在移动端请点击图片预览，长按图片保存
+                        {t('mobileHint', language)}
                       </p>
                     </div>
                 </CardHeader>
@@ -628,7 +682,7 @@ const ImageSlicer = () => {
                         <div className="w-2/3 p-3 flex flex-col justify-between">
                           <div>
                             <p className="font-medium truncate">{result.name}</p>
-                            <p className="text-sm text-gray-500 mt-1">尺寸: {result.width}×{result.height}px</p>
+                            <p className="text-sm text-gray-500 mt-1">{t('dimensions', language)}: {result.width}×{result.height}px</p>
                           </div>
                           <Button 
                             variant="outline" 
@@ -645,7 +699,7 @@ const ImageSlicer = () => {
                             ) : (
                               <DownloadIcon className="h-4 w-4 mr-2" />
                             )}
-                            下载
+                            {t('download', language)}
                           </Button>
                         </div>
                       </div>

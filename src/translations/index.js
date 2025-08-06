@@ -1,0 +1,196 @@
+export const translations = {
+  zh: {
+    // 页面标题
+    title: "多尺寸图片切割工具",
+    subtitle: "快速生成适配不同平台的图片尺寸",
+    
+    // 上传区域
+    uploadTitle: "上传图片",
+    uploadHint: "拖放图片到此处或点击上传",
+    uploadSupport: "支持 PNG, JPG, WebP 格式 (最大10MB)",
+    selectFile: "选择文件",
+    replaceImage: "更换图片",
+    
+    // 图片信息
+    dimensions: "尺寸",
+    fileSize: "大小",
+    format: "格式",
+    operations: "操作",
+    
+    // 尺寸配置
+    sizeConfigTitle: "尺寸配置",
+    presetSizes: "预设尺寸",
+    customSizes: "自定义尺寸",
+    addCustomSize: "添加自定义尺寸",
+    selectedSizes: "已选尺寸",
+    added: "已添加",
+    
+    // 预设尺寸名称
+    wechatHeader: "微信头图",
+    xiaohongshu: "小红书",
+    ecommerce: "电商商品",
+    // 国外APP头像尺寸
+    instagram: "Instagram头像",
+    threads: "Threads头像",
+    facebook: "Facebook头像",
+    twitter: "Twitter头像",
+    linkedin: "LinkedIn头像",
+    youtube: "YouTube头像",
+    tiktok: "TikTok头像",
+    whatsapp: "WhatsApp头像",
+    telegram: "Telegram头像",
+    discord: "Discord头像",
+    snapchat: "Snapchat头像",
+    pinterest: "Pinterest头像",
+    custom: "自定义",
+    
+    // 自定义尺寸
+    width: "宽度 (px)",
+    height: "高度 (px)",
+    sizeName: "尺寸名称 (可选)",
+    sizeNamePlaceholder: "例如：海报尺寸",
+    
+    // 切割参数
+    sliceParamsTitle: "切割参数设置",
+    sliceMode: "切割模式",
+    crop: "裁剪",
+    fit: "适配",
+    fillColor: "空白填充颜色",
+    outputFormat: "输出格式",
+    originalFormat: "同原图格式",
+    
+    // 操作按钮
+    startSlicing: "开始切割",
+    reset: "重置",
+    
+    // 处理状态
+    processing: "处理中...",
+    processingText: "正在生成 {count} 种尺寸的图片 ({progress}%)",
+    
+    // 结果预览
+    resultPreviewTitle: "切割结果预览",
+    resultPreviewHint: "切割完成后的图片将在这里显示",
+    resultPreviewSubHint: "上传图片并选择尺寸后点击\"开始切割\"",
+    
+    // 切割结果
+    sliceResults: "切割结果",
+    downloadAll: "打包下载全部",
+    mobileHint: "在移动端请点击图片预览，长按图片保存",
+    download: "下载",
+    packaging: "打包中 ({progress}%)",
+    
+    // 错误信息
+    uploadImageError: "请上传图片文件 (PNG, JPG, WebP)",
+    fileSizeError: "文件大小不能超过10MB",
+    downloadError: "图片下载失败，请重试",
+    packageDownloadError: "打包下载失败，请重试",
+    
+    // 语言切换
+    language: "语言",
+    chinese: "中文",
+    english: "English"
+  },
+  
+  en: {
+    // Page titles
+    title: "Multi-size Image Cutting Tool",
+    subtitle: "Quickly generate images adapted to different platform sizes",
+    
+    // Upload area
+    uploadTitle: "Upload Image",
+    uploadHint: "Drag and drop image here or click to upload",
+    uploadSupport: "Supports PNG, JPG, WebP formats (max 10MB)",
+    selectFile: "Select File",
+    replaceImage: "Replace Image",
+    
+    // Image info
+    dimensions: "Dimensions",
+    fileSize: "File Size",
+    format: "Format",
+    operations: "Operations",
+    
+    // Size configuration
+    sizeConfigTitle: "Size Configuration",
+    presetSizes: "Preset Sizes",
+    customSizes: "Custom Sizes",
+    addCustomSize: "Add Custom Size",
+    selectedSizes: "Selected Sizes",
+    added: "Added",
+    
+    // Preset size names
+    wechatHeader: "WeChat Header",
+    xiaohongshu: "Xiaohongshu",
+    ecommerce: "E-commerce Product",
+    // International APP avatar sizes
+    instagram: "Instagram Avatar",
+    threads: "Threads Avatar",
+    facebook: "Facebook Avatar",
+    twitter: "Twitter Avatar",
+    linkedin: "LinkedIn Avatar",
+    youtube: "YouTube Avatar",
+    tiktok: "TikTok Avatar",
+    whatsapp: "WhatsApp Avatar",
+    telegram: "Telegram Avatar",
+    discord: "Discord Avatar",
+    snapchat: "Snapchat Avatar",
+    pinterest: "Pinterest Avatar",
+    custom: "Custom",
+    
+    // Custom sizes
+    width: "Width (px)",
+    height: "Height (px)",
+    sizeName: "Size Name (optional)",
+    sizeNamePlaceholder: "e.g., Poster Size",
+    
+    // Slice parameters
+    sliceParamsTitle: "Slice Parameter Settings",
+    sliceMode: "Slice Mode",
+    crop: "Crop",
+    fit: "Fit",
+    fillColor: "Fill Color",
+    outputFormat: "Output Format",
+    originalFormat: "Same as Original",
+    
+    // Action buttons
+    startSlicing: "Start Slicing",
+    reset: "Reset",
+    
+    // Processing status
+    processing: "Processing...",
+    processingText: "Generating {count} size images ({progress}%)",
+    
+    // Result preview
+    resultPreviewTitle: "Slice Result Preview",
+    resultPreviewHint: "Sliced images will be displayed here",
+    resultPreviewSubHint: "Upload image and select sizes, then click 'Start Slicing'",
+    
+    // Slice results
+    sliceResults: "Slice Results",
+    downloadAll: "Download All",
+    mobileHint: "On mobile, tap image to preview, long press to save",
+    download: "Download",
+    packaging: "Packaging ({progress}%)",
+    
+    // Error messages
+    uploadImageError: "Please upload image files (PNG, JPG, WebP)",
+    fileSizeError: "File size cannot exceed 10MB",
+    downloadError: "Image download failed, please try again",
+    packageDownloadError: "Package download failed, please try again",
+    
+    // Language switch
+    language: "Language",
+    chinese: "中文",
+    english: "English"
+  }
+};
+
+export const t = (key, language = 'zh', params = {}) => {
+  let text = translations[language]?.[key] || translations['zh'][key] || key;
+  
+  // 替换参数
+  Object.keys(params).forEach(param => {
+    text = text.replace(`{${param}}`, params[param]);
+  });
+  
+  return text;
+}; 

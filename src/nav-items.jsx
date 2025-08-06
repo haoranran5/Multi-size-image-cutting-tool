@@ -12,3 +12,13 @@ export const navItems = [
     page: <ImageSlicer />,
   },
 ];
+
+// 多语言路由配置
+export const getLocalizedNavItems = (language) => [
+  {
+    title: language === 'zh' ? "图片切割工具" : "Image Cutting Tool",
+    to: `/${language}`,
+    icon: <ScissorsIcon className="h-4 w-4" />,
+    page: <ImageSlicer />,
+  },
+];
