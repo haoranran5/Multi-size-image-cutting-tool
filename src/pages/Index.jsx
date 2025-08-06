@@ -149,32 +149,33 @@ const ImageSlicer = () => {
           offsetY = -(drawHeight - height) / 2;
         }
       } else if (mode === 'circle') {
-        // 圆形剪裁：不填充背景色，直接绘制图片
-        if (imgAspect > targetAspect) {
-          drawWidth = width;
-          drawHeight = width / imgAspect;
-          offsetX = 0;
-          offsetY = (height - drawHeight) / 2;
-        } else {
-          drawHeight = height;
-          drawWidth = height * imgAspect;
-          offsetX = (width - drawWidth) / 2;
-          offsetY = 0;
-        }
+        // 圆形剪裁：确保输出完整的圆形，图片放大填满圆形区域
+        const size = Math.min(width, height); // 使用较小的尺寸确保正方形
         
-        // 绘制图片
+        // 重新设置画布为正方形
+        canvas.width = size;
+        canvas.height = size;
+        
+        // 计算缩放比例，确保图片能完全覆盖圆形区域
+        const scale = Math.max(size / img.width, size / img.height);
+        const drawWidth = img.width * scale;
+        const drawHeight = img.height * scale;
+        const offsetX = (size - drawWidth) / 2;
+        const offsetY = (size - drawHeight) / 2;
+        
+        // 绘制图片（放大并居中）
         ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
         
         // 创建圆形遮罩
         ctx.globalCompositeOperation = 'destination-in';
         ctx.beginPath();
-        ctx.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
+        ctx.arc(size / 2, size / 2, size / 2, 0, 2 * Math.PI);
         ctx.fill();
         
         // 恢复绘制模式
         ctx.globalCompositeOperation = 'source-over';
         
-        // 圆形剪裁强制使用PNG格式以支持透明度
+        // 圆形剪裁强制使用PNG格式以支持透明度，最高质量
         const dataUrl = canvas.toDataURL('image/png', 1.0);
         resolve(dataUrl);
         return;
