@@ -17,8 +17,12 @@ const LanguageSwitcher = () => {
           className="gap-1 sm:gap-2 text-xs sm:text-sm h-7 w-7 sm:h-8 sm:w-auto sm:px-2 sm:px-3 p-0 touch-manipulation shadow-sm bg-white/90 backdrop-blur-sm"
         >
           <GlobeIcon className="h-3 w-3 sm:h-4 sm:w-4" />
-          <span className="hidden sm:inline">{language === 'zh' ? '中文' : 'English'}</span>
-          <span className="sm:hidden">{language === 'zh' ? '中' : 'EN'}</span>
+          <span className="hidden sm:inline">
+            {language === 'zh' ? '中文' : language === 'hi' ? 'हिंदी' : 'English'}
+          </span>
+          <span className="sm:hidden">
+            {language === 'zh' ? '中' : language === 'hi' ? 'हि' : 'EN'}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-[120px]">
@@ -33,6 +37,12 @@ const LanguageSwitcher = () => {
           className="text-sm cursor-pointer touch-manipulation"
         >
           {t('english', language)}
+        </DropdownMenuItem>
+        <DropdownMenuItem 
+          onClick={() => changeLanguage('hi')}
+          className="text-sm cursor-pointer touch-manipulation"
+        >
+          {t('hindi', language)}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

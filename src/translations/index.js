@@ -189,6 +189,103 @@ export const translations = {
     language: "Language",
     chinese: "中文",
     english: "English"
+  },
+  
+  hi: {
+    // Page titles
+    title: "ऑनलाइन इमेज क्रॉप",
+    subtitle: "JPG, PNG, WebP क्रॉप करें - कस्टम साइज़",
+    subtitle2: "सोशल मीडिया के लिए क्रॉप: Instagram, LinkedIn, Twitter",
+    
+    // Upload area
+    uploadTitle: "छवि अपलोड करें",
+    uploadHint: "यहां छवि खींचें और छोड़ें या अपलोड के लिए क्लिक करें",
+    uploadSupport: "PNG, JPG, WebP फॉर्मेट का समर्थन करता है (अधिकतम 10MB)",
+    selectFile: "छवि अपलोड करें",
+    replaceImage: "छवि बदलें",
+    
+    // Image info
+    dimensions: "आयाम",
+    fileSize: "फ़ाइल आकार",
+    format: "फॉर्मेट",
+    operations: "कार्य",
+    
+    // Size configuration
+    sizeConfigTitle: "आकार कॉन्फ़िगरेशन",
+    presetSizes: "पूर्व निर्धारित आकार",
+    customSizes: "कस्टम आकार",
+    addCustomSize: "कस्टम आकार जोड़ें",
+    selectedSizes: "चयनित आकार",
+    added: "जोड़ा गया",
+    selected: "चयनित",
+    selectAll: "सभी चुनें",
+    clearAll: "सभी साफ़ करें",
+    
+    // Preset size names
+    wechatHeader: "WeChat हेडर",
+    xiaohongshu: "Xiaohongshu",
+    ecommerce: "ई-कॉमर्स उत्पाद",
+    instagram: "Instagram अवतार",
+    threads: "Threads अवतार",
+    facebook: "Facebook अवतार",
+    twitter: "Twitter अवतार",
+    linkedin: "LinkedIn अवतार",
+    youtube: "YouTube अवतार",
+    tiktok: "TikTok अवतार",
+    whatsapp: "WhatsApp अवतार",
+    telegram: "Telegram अवतार",
+    discord: "Discord अवतार",
+    snapchat: "Snapchat अवतार",
+    pinterest: "Pinterest अवतार",
+    custom: "कस्टम",
+    
+    // Custom sizes
+    width: "चौड़ाई (px)",
+    height: "ऊंचाई (px)",
+    sizeName: "आकार का नाम (वैकल्पिक)",
+    sizeNamePlaceholder: "उदाहरण: पोस्टर आकार",
+    
+    // Slice parameters
+    sliceParamsTitle: "क्रॉप पैरामीटर सेटिंग्स",
+    sliceMode: "क्रॉप मोड",
+    crop: "क्रॉप",
+    fit: "फिट",
+    circle: "गोल",
+    fillColor: "भरण रंग",
+    outputFormat: "आउटपुट फॉर्मेट",
+    originalFormat: "मूल के समान",
+    
+    // Action buttons
+    startSlicing: "अभी क्रॉप करें",
+    reset: "रीसेट",
+    
+    // Processing status
+    processing: "प्रोसेसिंग...",
+    processingText: "{count} आकार की छवियां उत्पन्न हो रही हैं ({progress}%)",
+    
+    // Result preview
+    resultPreviewTitle: "क्रॉप परिणाम पूर्वावलोकन",
+    resultPreviewHint: "क्रॉप की गई छवियां यहां दिखाई देंगी",
+    resultPreviewSubHint: "छवि अपलोड करें और आकार चुनें, फिर 'क्रॉप शुरू करें' पर क्लिक करें",
+    
+    // Slice results
+    sliceResults: "क्रॉप परिणाम",
+    downloadAll: "सभी डाउनलोड करें",
+    mobileHint: "मोबाइल पर, पूर्वावलोकन के लिए छवि पर टैप करें, बचाने के लिए लंबे समय तक दबाएं",
+    download: "डाउनलोड",
+    packaging: "पैकेजिंग ({progress}%)",
+    
+    // Error messages
+    uploadImageError: "कृपया छवि फ़ाइलें अपलोड करें (PNG, JPG, WebP)",
+    fileSizeError: "फ़ाइल का आकार 10MB से अधिक नहीं हो सकता",
+    downloadError: "छवि डाउनलोड विफल, कृपया पुनः प्रयास करें",
+    packageDownloadError: "पैकेज डाउनलोड विफल, कृपया पुनः प्रयास करें",
+    
+    // Language switch
+    language: "भाषा",
+    chinese: "中文",
+    english: "English",
+    hindi: "हिंदी"
   }
 };
 

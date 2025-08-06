@@ -16,7 +16,9 @@ export const navItems = [
 // 多语言路由配置
 export const getLocalizedNavItems = (language) => [
   {
-    title: language === 'zh' ? "图片切割工具" : "Image Cutting Tool",
+    title: language === 'zh' ? "图片切割工具" : 
+           language === 'hi' ? "छवि क्रॉपिंग टूल" : 
+           "Image Cutting Tool",
     to: `/${language}`,
     icon: <ScissorsIcon className="h-4 w-4" />,
     page: <ImageSlicer />,

@@ -20,6 +20,8 @@ export const LanguageProvider = ({ children }) => {
       setLanguage('en');
     } else if (path.startsWith('/zh')) {
       setLanguage('zh');
+    } else if (path.startsWith('/hi')) {
+      setLanguage('hi');
     } else {
       // 默认英文
       setLanguage('en');
@@ -30,7 +32,7 @@ export const LanguageProvider = ({ children }) => {
     setLanguage(newLanguage);
     // 更新 URL
     const currentPath = window.location.pathname;
-    const newPath = currentPath.replace(/^\/(en|zh)/, `/${newLanguage}`);
+    const newPath = currentPath.replace(/^\/(en|zh|hi)/, `/${newLanguage}`);
     window.history.replaceState(null, '', newPath);
   };
 

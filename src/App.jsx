@@ -33,6 +33,9 @@ const App = () => {
                 {/* 英文路由 */}
                 <Route path="/en" element={mainPage} />
                 
+                {/* 印地语路由 */}
+                <Route path="/hi" element={mainPage} />
+                
                 {/* 捕获所有其他路由，重定向到英文版本 */}
                 <Route path="*" element={<Navigate to="/en" replace />} />
               </Routes>
