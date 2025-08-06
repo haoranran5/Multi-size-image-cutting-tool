@@ -147,7 +147,37 @@ const ImageSlicer = () => {
           offsetX = 0;
           offsetY = -(drawHeight - height) / 2;
         }
+      } else if (mode === 'circle') {
+        // 圆形剪裁：先按适配模式绘制图片
+        if (imgAspect > targetAspect) {
+          drawWidth = width;
+          drawHeight = width / imgAspect;
+          offsetX = 0;
+          offsetY = (height - drawHeight) / 2;
+        } else {
+          drawHeight = height;
+          drawWidth = height * imgAspect;
+          offsetX = (width - drawWidth) / 2;
+          offsetY = 0;
+        }
+        
+        // 绘制图片
+        ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+        
+        // 创建圆形遮罩
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.beginPath();
+        ctx.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
+        ctx.fill();
+        
+        // 恢复绘制模式
+        ctx.globalCompositeOperation = 'source-over';
+        
+        const dataUrl = canvas.toDataURL(`image/${sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat}`, 0.92);
+        resolve(dataUrl);
+        return;
       } else {
+        // fit 模式
         if (imgAspect > targetAspect) {
           drawWidth = width;
           drawHeight = width / imgAspect;
@@ -277,7 +307,8 @@ const ImageSlicer = () => {
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4 max-w-6xl rounded">
         <h1 className="text-3xl font-bold text-center mb-2 text-blue-600">{t('title', language)}</h1>
-        <p className="text-center text-gray-600 mb-8">{t('subtitle', language)}</p>
+        <p className="text-center text-gray-600 mb-2">{t('subtitle', language)}</p>
+        <p className="text-center text-gray-500 mb-8">{t('subtitle2', language)}</p>
         
         <div className="flex flex-col lg:flex-row gap-6">
           {/* 左侧配置区域 - 占2/3 */}
@@ -479,23 +510,46 @@ const ImageSlicer = () => {
                 <CardTitle>{t('sliceParamsTitle', language)}</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <Label htmlFor="mode">{t('sliceMode', language)}</Label>
-                  <div className="flex items-center gap-3">
-                    <span className={sliceSettings.mode === 'crop' ? 'font-medium' : 'text-gray-500'}>{t('crop', language)}</span>
-                    <Switch 
-                      id="mode"
-                      checked={sliceSettings.mode === 'fit'}
-                      onCheckedChange={(checked) => setSliceSettings({
-                        ...sliceSettings, 
-                        mode: checked ? 'fit' : 'crop'
-                      })}
-                    />
-                    <span className={sliceSettings.mode === 'fit' ? 'font-medium' : 'text-gray-500'}>{t('fit', language)}</span>
+                <div>
+                  <Label>{t('sliceMode', language)}</Label>
+                  <div className="flex gap-4 mt-2">
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id="crop"
+                        name="mode"
+                        checked={sliceSettings.mode === 'crop'}
+                        onChange={() => setSliceSettings({...sliceSettings, mode: 'crop'})}
+                        className="w-4 h-4 text-blue-600"
+                      />
+                      <Label htmlFor="crop" className="text-sm">{t('crop', language)}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id="fit"
+                        name="mode"
+                        checked={sliceSettings.mode === 'fit'}
+                        onChange={() => setSliceSettings({...sliceSettings, mode: 'fit'})}
+                        className="w-4 h-4 text-blue-600"
+                      />
+                      <Label htmlFor="fit" className="text-sm">{t('fit', language)}</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        id="circle"
+                        name="mode"
+                        checked={sliceSettings.mode === 'circle'}
+                        onChange={() => setSliceSettings({...sliceSettings, mode: 'circle'})}
+                        className="w-4 h-4 text-blue-600"
+                      />
+                      <Label htmlFor="circle" className="text-sm">{t('circle', language)}</Label>
+                    </div>
                   </div>
                 </div>
                 
-                {sliceSettings.mode === 'fit' && (
+                {(sliceSettings.mode === 'fit' || sliceSettings.mode === 'circle') && (
                   <div>
                     <Label htmlFor="fillColor">{t('fillColor', language)}</Label>
                     <div className="flex items-center gap-3 mt-1">

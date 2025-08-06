@@ -1,14 +1,15 @@
 export const translations = {
   zh: {
     // 页面标题
-    title: "多尺寸图片切割工具",
-    subtitle: "快速生成适配不同平台的图片尺寸",
+    title: "Crop Image Online",
+    subtitle: "Crop JPG, PNG, WebP - Custom Sizes",
+    subtitle2: "Crop for Social Media: Instagram, LinkedIn, Twitter",
     
     // 上传区域
     uploadTitle: "上传图片",
     uploadHint: "拖放图片到此处或点击上传",
     uploadSupport: "支持 PNG, JPG, WebP 格式 (最大10MB)",
-    selectFile: "选择文件",
+    selectFile: "Upload Image",
     replaceImage: "更换图片",
     
     // 图片信息
@@ -54,12 +55,13 @@ export const translations = {
     sliceMode: "切割模式",
     crop: "裁剪",
     fit: "适配",
+    circle: "圆形",
     fillColor: "空白填充颜色",
     outputFormat: "输出格式",
     originalFormat: "同原图格式",
     
     // 操作按钮
-    startSlicing: "开始切割",
+    startSlicing: "Crop Now",
     reset: "重置",
     
     // 处理状态
@@ -92,14 +94,15 @@ export const translations = {
   
   en: {
     // Page titles
-    title: "Multi-size Image Cutting Tool",
-    subtitle: "Quickly generate images adapted to different platform sizes",
+    title: "Crop Image Online",
+    subtitle: "Crop JPG, PNG, WebP - Custom Sizes",
+    subtitle2: "Crop for Social Media: Instagram, LinkedIn, Twitter",
     
     // Upload area
     uploadTitle: "Upload Image",
     uploadHint: "Drag and drop image here or click to upload",
     uploadSupport: "Supports PNG, JPG, WebP formats (max 10MB)",
-    selectFile: "Select File",
+    selectFile: "Upload Image",
     replaceImage: "Replace Image",
     
     // Image info
@@ -145,12 +148,13 @@ export const translations = {
     sliceMode: "Slice Mode",
     crop: "Crop",
     fit: "Fit",
+    circle: "Circle",
     fillColor: "Fill Color",
     outputFormat: "Output Format",
     originalFormat: "Same as Original",
     
     // Action buttons
-    startSlicing: "Start Slicing",
+    startSlicing: "Crop Now",
     reset: "Reset",
     
     // Processing status
