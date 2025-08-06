@@ -18,10 +18,10 @@ const App = () => {
           <Toaster />
           <BrowserRouter>
             <div className="min-h-screen bg-gray-50">
-              {/* 语言切换器 */}
-              <div className="fixed top-4 right-4 z-50">
-                <LanguageSwitcher />
-              </div>
+                          {/* 语言切换器 */}
+            <div className="fixed top-2 right-2 sm:top-4 sm:right-4 z-50">
+              <LanguageSwitcher />
+            </div>
               
               <Routes>
                 {/* 重定向根路径到英文版本 */}

@@ -127,15 +127,16 @@ const ImageSlicer = () => {
       canvas.height = height;
       const ctx = canvas.getContext('2d');
       
-      ctx.fillStyle = fillColor;
-      ctx.fillRect(0, 0, width, height);
-      
       const imgAspect = img.width / img.height;
       const targetAspect = width / height;
       
       let drawWidth, drawHeight, offsetX, offsetY;
       
       if (mode === 'crop') {
+        // 裁剪模式：填充背景色
+        ctx.fillStyle = fillColor;
+        ctx.fillRect(0, 0, width, height);
+        
         if (imgAspect > targetAspect) {
           drawHeight = height;
           drawWidth = height * imgAspect;
@@ -148,7 +149,7 @@ const ImageSlicer = () => {
           offsetY = -(drawHeight - height) / 2;
         }
       } else if (mode === 'circle') {
-        // 圆形剪裁：先按适配模式绘制图片
+        // 圆形剪裁：不填充背景色，直接绘制图片
         if (imgAspect > targetAspect) {
           drawWidth = width;
           drawHeight = width / imgAspect;
@@ -177,7 +178,10 @@ const ImageSlicer = () => {
         resolve(dataUrl);
         return;
       } else {
-        // fit 模式
+        // fit 模式：填充背景色
+        ctx.fillStyle = fillColor;
+        ctx.fillRect(0, 0, width, height);
+        
         if (imgAspect > targetAspect) {
           drawWidth = width;
           drawHeight = width / imgAspect;
@@ -304,36 +308,36 @@ const ImageSlicer = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
-      <div className="container mx-auto px-4 max-w-6xl rounded">
-        <h1 className="text-3xl font-bold text-center mb-2 text-blue-600">{t('title', language)}</h1>
-        <p className="text-center text-gray-600 mb-2">{t('subtitle', language)}</p>
-        <p className="text-center text-gray-500 mb-8">{t('subtitle2', language)}</p>
+    <div className="min-h-screen bg-gray-50 py-2 sm:py-4 md:py-8">
+      <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 text-blue-600">{t('title', language)}</h1>
+        <p className="text-center text-xs sm:text-sm md:text-base text-gray-600 mb-2 px-2">{t('subtitle', language)}</p>
+        <p className="text-center text-xs text-gray-500 mb-4 sm:mb-6 md:mb-8 px-2">{t('subtitle2', language)}</p>
         
-        <div className="flex flex-col lg:flex-row gap-6">
-          {/* 左侧配置区域 - 占2/3 */}
-          <div className="w-full lg:w-2/3 space-y-6">
+        <div className="flex flex-col xl:flex-row gap-3 sm:gap-4 md:gap-6">
+          {/* 左侧配置区域 */}
+          <div className="w-full xl:w-2/3 space-y-3 sm:space-y-4 md:space-y-6">
             {/* 上传图片卡片 */}
             <Card className="h-fit">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <UploadIcon className="h-5 w-5" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                  <UploadIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   {t('uploadTitle', language)}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-3 sm:p-4 md:p-6">
                 {!originalImage ? (
                   <div 
-                    className="border-2 border-dashed border-blue-300 rounded-xl p-8 text-center bg-blue-50 cursor-pointer"
+                    className="border-2 border-dashed border-blue-300 rounded-xl p-3 sm:p-6 md:p-8 text-center bg-blue-50 cursor-pointer touch-manipulation"
                     onDrop={handleDrop}
                     onDragOver={(e) => e.preventDefault()}
                     onClick={() => fileInputRef.current.click()}
                   >
-                    <div className="flex flex-col items-center justify-center gap-3">
-                      <UploadIcon className="h-12 w-12 text-blue-400" />
-                      <p className="font-medium">{t('uploadHint', language)}</p>
-                      <p className="text-sm text-gray-500">{t('uploadSupport', language)}</p>
-                      <Button variant="outline" className="mt-2 bg-white">
+                    <div className="flex flex-col items-center justify-center gap-2 sm:gap-3">
+                      <UploadIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 text-blue-400" />
+                      <p className="font-medium text-xs sm:text-sm md:text-base">{t('uploadHint', language)}</p>
+                      <p className="text-xs text-gray-500 px-2">{t('uploadSupport', language)}</p>
+                      <Button variant="outline" className="mt-2 bg-white text-xs sm:text-sm h-8 sm:h-9 md:h-10 px-3 sm:px-4">
                         {t('selectFile', language)}
                       </Button>
                     </div>
@@ -347,41 +351,43 @@ const ImageSlicer = () => {
                   </div>
                 ) : (
                   <div className="flex flex-col items-center">
-                    <div className="relative mb-4">
+                    <div className="relative mb-3 sm:mb-4 w-full">
                       <img 
                         src={originalImage} 
                         alt="预览" 
-                        className="max-h-64 max-w-full rounded-lg shadow-md mx-auto object-cover"
+                        className="max-h-40 sm:max-h-48 md:max-h-64 max-w-full rounded-lg shadow-md mx-auto object-cover w-full"
                       />
                       <div className="absolute top-2 right-2">
                         <Button 
                           variant="destructive" 
                           size="icon"
+                          className="h-7 w-7 sm:h-8 sm:w-8 md:h-10 md:w-10 touch-manipulation"
                           onClick={() => setOriginalImage(null)}
                         >
-                          <Trash2Icon className="h-4 w-4" />
+                          <Trash2Icon className="h-3 w-3 sm:h-4 sm:w-4" />
                         </Button>
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 gap-4 w-full">
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">{t('dimensions', language)}</p>
-                        <p className="font-medium">{imageInfo.width} × {imageInfo.height} px</p>
+                    <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4 w-full">
+                      <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                        <p className="text-xs text-gray-500">{t('dimensions', language)}</p>
+                        <p className="font-medium text-xs sm:text-sm md:text-base">{imageInfo.width} × {imageInfo.height} px</p>
                       </div>
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">{t('fileSize', language)}</p>
-                        <p className="font-medium">{imageInfo.size}</p>
+                      <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                        <p className="text-xs text-gray-500">{t('fileSize', language)}</p>
+                        <p className="font-medium text-xs sm:text-sm md:text-base">{imageInfo.size}</p>
                       </div>
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">{t('format', language)}</p>
-                        <p className="font-medium">{imageInfo.format}</p>
+                      <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                        <p className="text-xs text-gray-500">{t('format', language)}</p>
+                        <p className="font-medium text-xs sm:text-sm md:text-base">{imageInfo.format}</p>
                       </div>
-                      <div className="bg-blue-50 p-3 rounded-lg">
-                        <p className="text-sm text-gray-500">{t('operations', language)}</p>
+                      <div className="bg-blue-50 p-2 sm:p-3 rounded-lg">
+                        <p className="text-xs text-gray-500">{t('operations', language)}</p>
                         <Button 
                           variant="outline" 
                           size="sm"
+                          className="text-xs h-6 sm:h-7 md:h-9 w-full touch-manipulation"
                           onClick={() => fileInputRef.current.click()}
                         >
                           {t('replaceImage', language)}
@@ -395,38 +401,39 @@ const ImageSlicer = () => {
             
             {/* 尺寸配置卡片 */}
             <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <ScissorsIcon className="h-5 w-5" />
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+                  <ScissorsIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   {t('sizeConfigTitle', language)}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <Tabs defaultValue="presets" className="mb-4">
-                  <TabsList className="grid grid-cols-2 w-full">
-                    <TabsTrigger value="presets">{t('presetSizes', language)}</TabsTrigger>
-                    <TabsTrigger value="custom">{t('customSizes', language)}</TabsTrigger>
+              <CardContent className="p-3 sm:p-4 md:p-6">
+                <Tabs defaultValue="presets" className="mb-3 sm:mb-4">
+                  <TabsList className="grid grid-cols-2 w-full h-9 sm:h-10">
+                    <TabsTrigger value="presets" className="text-xs sm:text-sm">{t('presetSizes', language)}</TabsTrigger>
+                    <TabsTrigger value="custom" className="text-xs sm:text-sm">{t('customSizes', language)}</TabsTrigger>
                   </TabsList>
                   
                   <TabsContent value="presets">
-                    <div className="mt-4">
-                      <div className="grid grid-cols-2 gap-3">
+                    <div className="mt-3 sm:mt-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                         {PRESET_SIZES.map((size) => (
-                          <div key={size.id} className="border rounded-lg p-3 flex justify-between items-center">
-                            <div>
-                              <p className="font-medium text-sm">{size.name}</p>
+                          <div key={size.id} className="border rounded-lg p-2 sm:p-3 flex justify-between items-center touch-manipulation">
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium text-xs sm:text-sm truncate">{size.name}</p>
                               <p className="text-xs text-gray-500">{size.width} × {size.height} px</p>
                             </div>
                             {!selectedSizes.some(s => s.id === size.id) ? (
                               <Button 
                                 variant="outline"
                                 size="sm"
+                                className="ml-2 flex-shrink-0 h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 p-0 touch-manipulation"
                                 onClick={() => setSelectedSizes([...selectedSizes, size])}
                               >
                                 <PlusIcon className="h-3 w-3" />
                               </Button>
                             ) : (
-                              <span className="text-xs text-green-500">{t('added', language)}</span>
+                              <span className="text-xs text-green-500 ml-2 flex-shrink-0">{t('added', language)}</span>
                             )}
                           </div>
                         ))}
@@ -435,67 +442,71 @@ const ImageSlicer = () => {
                   </TabsContent>
                   
                   <TabsContent value="custom">
-                    <div className="space-y-4 mt-4">
-                      <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                      <div className="grid grid-cols-2 gap-2 sm:gap-3 md:gap-4">
                         <div>
-                          <Label htmlFor="width">{t('width', language)}</Label>
+                          <Label htmlFor="width" className="text-xs sm:text-sm">{t('width', language)}</Label>
                           <Input 
                             id="width" 
                             type="number" 
                             value={customSize.width}
                             onChange={(e) => setCustomSize({...customSize, width: e.target.value})}
                             min="1"
+                            className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                           />
                         </div>
                         <div>
-                          <Label htmlFor="height">{t('height', language)}</Label>
+                          <Label htmlFor="height" className="text-xs sm:text-sm">{t('height', language)}</Label>
                           <Input 
                             id="height" 
                             type="number" 
                             value={customSize.height}
                             onChange={(e) => setCustomSize({...customSize, height: e.target.value})}
                             min="1"
+                            className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                           />
                         </div>
                       </div>
                       
                       <div>
-                        <Label htmlFor="sizeName">{t('sizeName', language)}</Label>
+                        <Label htmlFor="sizeName" className="text-xs sm:text-sm">{t('sizeName', language)}</Label>
                         <Input 
                           id="sizeName" 
                           placeholder={t('sizeNamePlaceholder', language)}
                           value={customSize.name}
                           onChange={(e) => setCustomSize({...customSize, name: e.target.value})}
+                          className="h-8 sm:h-9 md:h-10 text-xs sm:text-sm"
                         />
                       </div>
                       
                       <Button 
-                        className="w-full"
+                        className="w-full h-8 sm:h-9 md:h-10 text-xs sm:text-sm touch-manipulation"
                         onClick={addCustomSize}
                         disabled={!customSize.width || !customSize.height}
                       >
-                        <PlusIcon className="h-4 w-4 mr-2" />
+                        <PlusIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                         {t('addCustomSize', language)}
                       </Button>
                     </div>
                   </TabsContent>
                 </Tabs>
                 
-                <div className="mt-6">
-                  <h3 className="font-medium mb-3">{t('selectedSizes', language)} ({selectedSizes.length})</h3>
-                  <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
+                <div className="mt-4 sm:mt-6">
+                  <h3 className="font-medium mb-2 sm:mb-3 text-sm sm:text-base">{t('selectedSizes', language)} ({selectedSizes.length})</h3>
+                  <div className="space-y-2 max-h-32 sm:max-h-40 overflow-y-auto pr-2">
                     {selectedSizes.map((size) => (
-                      <div key={size.id} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                        <div>
-                          <span className="font-medium">{size.name}</span>
-                          <span className="text-sm text-gray-500 ml-2">{size.width}×{size.height}px</span>
+                      <div key={size.id} className="flex justify-between items-center p-2 bg-gray-50 rounded touch-manipulation">
+                        <div className="flex-1 min-w-0">
+                          <span className="font-medium text-xs sm:text-sm truncate block">{size.name}</span>
+                          <span className="text-xs text-gray-500">{size.width}×{size.height}px</span>
                         </div>
                         <Button 
                           variant="ghost" 
                           size="icon"
+                          className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 flex-shrink-0 touch-manipulation"
                           onClick={() => removeSize(size.id)}
                         >
-                          <Trash2Icon className="h-4 w-4 text-red-500" />
+                          <Trash2Icon className="h-3 w-3 sm:h-4 sm:w-4 text-red-500" />
                         </Button>
                       </div>
                     ))}
@@ -506,13 +517,13 @@ const ImageSlicer = () => {
             
             {/* 切割参数配置卡片 */}
             <Card>
-              <CardHeader>
-                <CardTitle>{t('sliceParamsTitle', language)}</CardTitle>
+              <CardHeader className="pb-3 sm:pb-4">
+                <CardTitle className="text-base sm:text-lg">{t('sliceParamsTitle', language)}</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-4">
+              <CardContent className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
                 <div>
-                  <Label>{t('sliceMode', language)}</Label>
-                  <div className="flex gap-4 mt-2">
+                  <Label className="text-xs sm:text-sm">{t('sliceMode', language)}</Label>
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-2">
                     <div className="flex items-center space-x-2">
                       <input
                         type="radio"
@@ -522,7 +533,7 @@ const ImageSlicer = () => {
                         onChange={() => setSliceSettings({...sliceSettings, mode: 'crop'})}
                         className="w-4 h-4 text-blue-600"
                       />
-                      <Label htmlFor="crop" className="text-sm">{t('crop', language)}</Label>
+                      <Label htmlFor="crop" className="text-xs sm:text-sm">{t('crop', language)}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <input
@@ -533,7 +544,7 @@ const ImageSlicer = () => {
                         onChange={() => setSliceSettings({...sliceSettings, mode: 'fit'})}
                         className="w-4 h-4 text-blue-600"
                       />
-                      <Label htmlFor="fit" className="text-sm">{t('fit', language)}</Label>
+                      <Label htmlFor="fit" className="text-xs sm:text-sm">{t('fit', language)}</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <input
@@ -544,15 +555,15 @@ const ImageSlicer = () => {
                         onChange={() => setSliceSettings({...sliceSettings, mode: 'circle'})}
                         className="w-4 h-4 text-blue-600"
                       />
-                      <Label htmlFor="circle" className="text-sm">{t('circle', language)}</Label>
+                      <Label htmlFor="circle" className="text-xs sm:text-sm">{t('circle', language)}</Label>
                     </div>
                   </div>
                 </div>
                 
                 {(sliceSettings.mode === 'fit' || sliceSettings.mode === 'circle') && (
                   <div>
-                    <Label htmlFor="fillColor">{t('fillColor', language)}</Label>
-                    <div className="flex items-center gap-3 mt-1">
+                    <Label htmlFor="fillColor" className="text-xs sm:text-sm">{t('fillColor', language)}</Label>
+                    <div className="flex items-center gap-2 sm:gap-3 mt-1">
                       <input 
                         type="color" 
                         id="fillColor"
@@ -561,15 +572,15 @@ const ImageSlicer = () => {
                           ...sliceSettings, 
                           fillColor: e.target.value
                         })}
-                        className="w-10 h-10 border-0 rounded cursor-pointer"
+                        className="w-8 h-8 sm:w-10 sm:h-10 border-0 rounded cursor-pointer touch-manipulation"
                       />
-                      <span>{sliceSettings.fillColor}</span>
+                      <span className="text-xs sm:text-sm">{sliceSettings.fillColor}</span>
                     </div>
                   </div>
                 )}
                 
                 <div>
-                  <Label htmlFor="outputFormat">{t('outputFormat', language)}</Label>
+                  <Label htmlFor="outputFormat" className="text-xs sm:text-sm">{t('outputFormat', language)}</Label>
                   <Select 
                     value={sliceSettings.outputFormat}
                     onValueChange={(value) => setSliceSettings({
@@ -577,7 +588,7 @@ const ImageSlicer = () => {
                       outputFormat: value
                     })}
                   >
-                    <SelectTrigger className="w-full mt-1">
+                    <SelectTrigger className="w-full mt-1 h-8 sm:h-9 md:h-10 text-xs sm:text-sm">
                       <SelectValue placeholder={t('outputFormat', language)} />
                     </SelectTrigger>
                     <SelectContent>
@@ -592,38 +603,38 @@ const ImageSlicer = () => {
             </Card>
             
             {/* 操作按钮 */}
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <Button 
-                className="flex-1 py-6 text-lg"
+                className="flex-1 py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg touch-manipulation"
                 onClick={startSlicing}
                 disabled={!originalImage || selectedSizes.length === 0 || processing}
               >
-                <ScissorsIcon className="h-5 w-5 mr-2" />
+                <ScissorsIcon className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
                 {t('startSlicing', language)}
               </Button>
               
               <Button 
                 variant="outline" 
-                className="py-6 text-lg"
+                className="py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg touch-manipulation"
                 onClick={resetAll}
               >
-                <Trash2Icon className="h-5 w-5 mr-2" />
+                <Trash2Icon className="h-4 w-4 sm:h-5 sm:w-5 mr-1 sm:mr-2" />
                 {t('reset', language)}
               </Button>
             </div>
           </div>
           
-          {/* 右侧切割结果区域 - 占1/3 */}
-          <div className="w-full lg:w-1/3">
+          {/* 右侧切割结果区域 */}
+          <div className="w-full xl:w-1/3">
             {/* 处理进度 */}
             {processing && (
-              <Card className="mb-6">
-                <CardHeader>
-                  <CardTitle>{t('processing', language)}</CardTitle>
+              <Card className="mb-3 sm:mb-4 md:mb-6">
+                <CardHeader className="pb-2 sm:pb-3">
+                  <CardTitle className="text-sm sm:text-base md:text-lg">{t('processing', language)}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <Progress value={progress} className="h-3" />
-                  <p className="text-center mt-2 text-gray-600">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <Progress value={progress} className="h-2 sm:h-3" />
+                  <p className="text-center mt-2 text-gray-600 text-xs sm:text-sm">
                     {t('processingText', language, { count: selectedSizes.length, progress })}
                   </p>
                 </CardContent>
@@ -633,15 +644,15 @@ const ImageSlicer = () => {
             {/* 切割结果预览区域 */}
             {!processing && results.length === 0 && (
               <Card>
-                <CardHeader>
-                  <CardTitle>{t('resultPreviewTitle', language)}</CardTitle>
+                <CardHeader className="pb-2 sm:pb-3">
+                  <CardTitle className="text-sm sm:text-base md:text-lg">{t('resultPreviewTitle', language)}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col items-center justify-center h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
-                    <div className="text-center p-4">
-                      <ScissorsIcon className="h-12 w-12 text-gray-400 mx-auto mb-3" />
-                      <p className="text-gray-500 font-medium">{t('resultPreviewHint', language)}</p>
-                      <p className="text-sm text-gray-400 mt-2">{t('resultPreviewSubHint', language)}</p>
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex flex-col items-center justify-center h-32 sm:h-40 md:h-48 lg:h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
+                    <div className="text-center p-3 sm:p-4">
+                      <ScissorsIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-12 md:w-12 text-gray-400 mx-auto mb-2 sm:mb-3" />
+                      <p className="text-gray-500 font-medium text-xs sm:text-sm md:text-base">{t('resultPreviewHint', language)}</p>
+                      <p className="text-xs text-gray-400 mt-1 sm:mt-2">{t('resultPreviewSubHint', language)}</p>
                     </div>
                   </div>
                 </CardContent>
@@ -651,12 +662,14 @@ const ImageSlicer = () => {
             {/* 切割结果 */}
             {results.length > 0 && (
               <Card>
-                <CardHeader>
-                  <div className="flex justify-between items-center mb-2">
-                    <CardTitle>{t('sliceResults', language)}</CardTitle>
+                <CardHeader className="pb-2 sm:pb-3">
+                  <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-2">
+                    <CardTitle className="text-sm sm:text-base md:text-lg">{t('sliceResults', language)}</CardTitle>
 
                     <Button 
                       variant="secondary"
+                      size="sm"
+                      className="w-full sm:w-auto text-xs sm:text-sm h-8 sm:h-9 touch-manipulation"
                       onClick={(e) => {
                         e.preventDefault();
                         downloadAllImages();
@@ -665,49 +678,51 @@ const ImageSlicer = () => {
                     >
                       {downloading ? (
                         <>
-                          <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
-                          {t('packaging', language, { progress: downloadProgress })}
+                          <Loader2Icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 animate-spin" />
+                          <span className="hidden sm:inline">{t('packaging', language, { progress: downloadProgress })}</span>
+                          <span className="sm:hidden">打包中</span>
                         </>
                       ) : (
                         <>
-                          <DownloadIcon className="h-4 w-4 mr-2" />
-                          {t('downloadAll', language)}
+                          <DownloadIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+                          <span className="hidden sm:inline">{t('downloadAll', language)}</span>
+                          <span className="sm:hidden">下载全部</span>
                         </>
                       )}
                     </Button>
                   </div>
 
-                    {/* 新增移动端操作提示 */}
-                    <div className="p-2 bg-blue-50 rounded-lg block">
-                      <p className="text-sm text-blue-700 ">
-                        {t('mobileHint', language)}
+                    {/* 移动端操作提示 */}
+                    <div className="p-2 bg-blue-50 rounded-lg">
+                      <p className="text-xs sm:text-sm text-blue-700">
+                        💡 {t('mobileHint', language)}
                       </p>
                     </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="flex flex-col gap-4">
+                <CardContent className="p-3 sm:p-4 md:p-6">
+                  <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
                     {results.map((result) => (
-                      <div key={result.id} className="border rounded-lg overflow-hidden flex">
+                      <div key={result.id} className="border rounded-lg overflow-hidden flex touch-manipulation">
                         <div className="w-1/3 relative">
                           <img 
                             src={result.dataUrl} 
                             alt={result.name}
-                            className="w-full h-32 object-cover cursor-pointer"
+                            className="w-full h-20 sm:h-24 md:h-32 object-cover cursor-pointer"
                             onClick={() => setPreviewImage(result.dataUrl)}
                           />
                           <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-white text-xs p-1 text-center">
                             {result.width}×{result.height}px
                           </div>
                         </div>
-                        <div className="w-2/3 p-3 flex flex-col justify-between">
+                        <div className="w-2/3 p-2 sm:p-3 flex flex-col justify-between">
                           <div>
-                            <p className="font-medium truncate">{result.name}</p>
-                            <p className="text-sm text-gray-500 mt-1">{t('dimensions', language)}: {result.width}×{result.height}px</p>
+                            <p className="font-medium truncate text-xs sm:text-sm md:text-base">{result.name}</p>
+                            <p className="text-xs text-gray-500 mt-1">{t('dimensions', language)}: {result.width}×{result.height}px</p>
                           </div>
                           <Button 
                             variant="outline" 
                             size="sm" 
-                            className="w-full"
+                            className="w-full h-7 sm:h-8 md:h-9 text-xs sm:text-sm touch-manipulation mt-2"
                             onClick={(e) => {
                               e.preventDefault();
                               downloadImage(result.dataUrl, result.fileName);
@@ -715,9 +730,9 @@ const ImageSlicer = () => {
                             disabled={downloading}
                           >
                             {downloading ? (
-                              <Loader2Icon className="h-4 w-4 mr-2 animate-spin" />
+                              <Loader2Icon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2 animate-spin" />
                             ) : (
-                              <DownloadIcon className="h-4 w-4 mr-2" />
+                              <DownloadIcon className="h-3 w-3 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
                             )}
                             {t('download', language)}
                           </Button>
