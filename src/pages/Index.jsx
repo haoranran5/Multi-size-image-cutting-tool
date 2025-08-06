@@ -37,7 +37,7 @@ const ImageSlicer = () => {
 
   const [originalImage, setOriginalImage] = useState(null);
   const [imageInfo, setImageInfo] = useState({ width: 0, height: 0, size: 0, format: '' });
-  const [selectedSizes, setSelectedSizes] = useState([...PRESET_SIZES]);
+  const [selectedSizes, setSelectedSizes] = useState([]);
   const [customSizes, setCustomSizes] = useState([]);
   const [sliceSettings, setSliceSettings] = useState({
     mode: 'fit',
@@ -174,7 +174,8 @@ const ImageSlicer = () => {
         // 恢复绘制模式
         ctx.globalCompositeOperation = 'source-over';
         
-        const dataUrl = canvas.toDataURL(`image/${sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat}`, 0.92);
+        // 圆形剪裁强制使用PNG格式以支持透明度
+        const dataUrl = canvas.toDataURL('image/png', 1.0);
         resolve(dataUrl);
         return;
       } else {
@@ -197,7 +198,7 @@ const ImageSlicer = () => {
       
       ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
       
-      const dataUrl = canvas.toDataURL(`image/${sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat}`, 0.92);
+      const dataUrl = canvas.toDataURL(`image/${sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat}`, 1.0);
       resolve(dataUrl);
     });
   };
@@ -228,13 +229,17 @@ const ImageSlicer = () => {
         sliceSettings.fillColor
       );
       
+      // 确定文件扩展名：圆形剪裁强制使用PNG
+      const fileExtension = sliceSettings.mode === 'circle' ? 'png' : 
+        (sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat);
+      
       generatedResults.push({
         id: i + 1,
         width: size.width,
         height: size.height,
         name: size.name,
         dataUrl,
-        fileName: `${size.name.replace(/\s+/g, '_')}_${size.width}x${size.height}.${sliceSettings.outputFormat === 'original' ? imageInfo.format.toLowerCase() : sliceSettings.outputFormat}`
+        fileName: `${size.name.replace(/\s+/g, '_')}_${size.width}x${size.height}.${fileExtension}`
       });
       
       setProgress(Math.round(((i + 1) / selectedSizes.length) * 100));
@@ -250,7 +255,7 @@ const ImageSlicer = () => {
     setResults([]);
     setProgress(0);
     setOriginalFile(null);
-    setSelectedSizes([...PRESET_SIZES]);
+    setSelectedSizes([]);
     setCustomSizes([]);
   };
 
@@ -416,6 +421,31 @@ const ImageSlicer = () => {
                   
                   <TabsContent value="presets">
                     <div className="mt-3 sm:mt-4">
+                      <div className="flex justify-between items-center mb-3">
+                        <span className="text-xs sm:text-sm text-gray-600">
+                          {selectedSizes.filter(s => s.id <= 15).length} / {PRESET_SIZES.length} {t('selected', language)}
+                        </span>
+                        <div className="flex gap-2">
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 p-0 text-xs touch-manipulation"
+                            onClick={() => setSelectedSizes([...selectedSizes.filter(s => s.id > 15), ...PRESET_SIZES])}
+                            disabled={selectedSizes.filter(s => s.id <= 15).length === PRESET_SIZES.length}
+                          >
+                            {t('selectAll', language)}
+                          </Button>
+                          <Button 
+                            variant="outline" 
+                            size="sm"
+                            className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 p-0 text-xs touch-manipulation"
+                            onClick={() => setSelectedSizes(selectedSizes.filter(s => s.id > 15))}
+                            disabled={selectedSizes.filter(s => s.id <= 15).length === 0}
+                          >
+                            {t('clearAll', language)}
+                          </Button>
+                        </div>
+                      </div>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
                         {PRESET_SIZES.map((size) => (
                           <div key={size.id} className="border rounded-lg p-2 sm:p-3 flex justify-between items-center touch-manipulation">

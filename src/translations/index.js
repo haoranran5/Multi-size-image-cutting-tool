@@ -25,6 +25,9 @@ export const translations = {
     addCustomSize: "添加自定义尺寸",
     selectedSizes: "已选尺寸",
     added: "已添加",
+    selected: "已选择",
+    selectAll: "全选",
+    clearAll: "清空",
     
     // 预设尺寸名称
     wechatHeader: "微信头图",
@@ -118,6 +121,9 @@ export const translations = {
     addCustomSize: "Add Custom Size",
     selectedSizes: "Selected Sizes",
     added: "Added",
+    selected: "Selected",
+    selectAll: "Select All",
+    clearAll: "Clear All",
     
     // Preset size names
     wechatHeader: "WeChat Header",
