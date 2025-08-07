@@ -1,15 +1,15 @@
 export const translations = {
   zh: {
-    // SEO相关 - 使用英语以便搜索引擎检索
-    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
-    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    // SEO相关 - 使用高搜索量的中文关键词
+    pageTitle: "在线图片裁剪工具 - 免费图片编辑器 图片尺寸调整",
+    pageDescription: "免费在线图片裁剪工具，支持多种尺寸裁剪。Instagram、微信、小红书等社交媒体图片制作。无需注册，100%免费安全。",
+    ogTitle: "在线图片裁剪工具 - 免费图片编辑器 图片尺寸调整",
+    ogDescription: "免费在线图片裁剪工具，支持多种尺寸裁剪。Instagram、微信、小红书等社交媒体图片制作。无需注册，100%免费安全。",
     
-    // 页面标题
-    title: "多尺寸图片切割工具",
-    subtitle: "免费在线图片编辑工具",
-    subtitle2: "支持Instagram、LinkedIn、Twitter等社交媒体尺寸",
+    // 页面标题 - 使用高搜索量关键词
+    title: "在线图片裁剪工具",
+    subtitle: "免费图片编辑器 - 多尺寸批量裁剪",
+    subtitle2: "支持微信、小红书、Instagram等社交媒体尺寸",
     
     // 上传区域
     uploadTitle: "上传图片",
@@ -24,9 +24,9 @@ export const translations = {
     format: "格式",
     operations: "操作",
     
-    // 尺寸配置
-    sizeConfigTitle: "尺寸配置",
-    presetSizes: "预设尺寸",
+    // 尺寸配置 - 使用更吸引人的标题
+    sizeConfigTitle: "图片尺寸设置",
+    presetSizes: "常用尺寸",
     customSizes: "自定义尺寸",
     addCustomSize: "添加自定义尺寸",
     selectedSizes: "已选尺寸",
@@ -59,9 +59,9 @@ export const translations = {
     sizeName: "尺寸名称 (可选)",
     sizeNamePlaceholder: "例如：海报尺寸",
     
-    // 切割参数
-    sliceParamsTitle: "切割参数设置",
-    sliceMode: "切割模式",
+    // 切割参数 - 使用更清晰的标题
+    sliceParamsTitle: "裁剪设置",
+    sliceMode: "裁剪模式",
     crop: "裁剪",
     fit: "适配",
     circle: "圆形",
@@ -70,20 +70,20 @@ export const translations = {
     originalFormat: "同原图格式",
     
     // 操作按钮
-    startSlicing: "Crop Now",
+    startSlicing: "开始裁剪",
     reset: "重置",
     
     // 处理状态
     processing: "处理中...",
     processingText: "正在生成 {count} 种尺寸的图片 ({progress}%)",
     
-    // 结果预览
-    resultPreviewTitle: "切割结果预览",
-    resultPreviewHint: "切割完成后的图片将在这里显示",
-    resultPreviewSubHint: "上传图片并选择尺寸后点击\"开始切割\"",
+    // 结果预览 - 使用更吸引人的标题
+    resultPreviewTitle: "裁剪结果预览",
+    resultPreviewHint: "裁剪完成后的图片将在这里显示",
+    resultPreviewSubHint: "上传图片并选择尺寸后点击\"开始裁剪\"",
     
     // 切割结果
-    sliceResults: "切割结果",
+    sliceResults: "裁剪结果",
     downloadAll: "打包下载全部",
     mobileHint: "在移动端请点击图片预览，长按图片保存",
     download: "下载",
@@ -102,16 +102,16 @@ export const translations = {
   },
   
   en: {
-    // SEO related
-    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
-    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    // SEO related - 使用高搜索量的英文关键词
+    pageTitle: "Free Online Image Cropper - Crop Photos for Social Media | Image Resizer",
+    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for Instagram, Facebook, Twitter, LinkedIn. No registration required. 100% free and secure.",
+    ogTitle: "Free Online Image Cropper - Crop Photos for Social Media | Image Resizer",
+    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for Instagram, Facebook, Twitter, LinkedIn. No registration required. 100% free and secure.",
     
-    // Page titles
-    title: "Multi-size Image Cutting Tool",
-    subtitle: "Free Online Image Editor",
-    subtitle2: "Support Instagram, LinkedIn, Twitter and Other Social Media Sizes",
+    // Page titles - 使用高搜索量关键词
+    title: "Free Online Image Cropper",
+    subtitle: "Crop Photos for Social Media - Multi-size Image Editor",
+    subtitle2: "Support Instagram, Facebook, Twitter, LinkedIn and Other Social Media Sizes",
     
     // Upload area
     uploadTitle: "Upload Image",
@@ -126,9 +126,9 @@ export const translations = {
     format: "Format",
     operations: "Operations",
     
-    // Size configuration
-    sizeConfigTitle: "Size Configuration",
-    presetSizes: "Preset Sizes",
+    // Size configuration - 使用更吸引人的标题
+    sizeConfigTitle: "Image Size Settings",
+    presetSizes: "Popular Sizes",
     customSizes: "Custom Sizes",
     addCustomSize: "Add Custom Size",
     selectedSizes: "Selected Sizes",
@@ -161,9 +161,9 @@ export const translations = {
     sizeName: "Size Name (optional)",
     sizeNamePlaceholder: "e.g., Poster Size",
     
-    // Slice parameters
-    sliceParamsTitle: "Slice Parameter Settings",
-    sliceMode: "Slice Mode",
+    // Slice parameters - 使用更清晰的标题
+    sliceParamsTitle: "Crop Settings",
+    sliceMode: "Crop Mode",
     crop: "Crop",
     fit: "Fit",
     circle: "Circle",
@@ -179,13 +179,13 @@ export const translations = {
     processing: "Processing...",
     processingText: "Generating {count} size images ({progress}%)",
     
-    // Result preview
-    resultPreviewTitle: "Slice Result Preview",
-    resultPreviewHint: "Sliced images will be displayed here",
-    resultPreviewSubHint: "Upload image and select sizes, then click 'Start Slicing'",
+    // Result preview - 使用更吸引人的标题
+    resultPreviewTitle: "Crop Results Preview",
+    resultPreviewHint: "Cropped images will be displayed here",
+    resultPreviewSubHint: "Upload image and select sizes, then click 'Crop Now'",
     
     // Slice results
-    sliceResults: "Slice Results",
+    sliceResults: "Crop Results",
     downloadAll: "Download All",
     mobileHint: "On mobile, tap image to preview, long press to save",
     download: "Download",
@@ -204,16 +204,16 @@ export const translations = {
   },
   
   hi: {
-    // SEO related - Use English for better search engine indexing
-    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
-    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
-    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    // SEO related - 使用高搜索量的印地语关键词
+    pageTitle: "ऑनलाइन इमेज क्रॉपर - सोशल मीडिया के लिए फोटो क्रॉप करें | इमेज रीसाइज़र",
+    pageDescription: "मुफ्त ऑनलाइन इमेज क्रॉपर और फोटो एडिटर। Instagram, Facebook, Twitter, LinkedIn के लिए इमेज क्रॉप, रीसाइज़ और एडिट करें। पंजीकरण की आवश्यकता नहीं। 100% मुफ्त और सुरक्षित।",
+    ogTitle: "ऑनलाइन इमेज क्रॉपर - सोशल मीडिया के लिए फोटो क्रॉप करें | इमेज रीसाइज़र",
+    ogDescription: "मुफ्त ऑनलाइन इमेज क्रॉपर और फोटो एडिटर। Instagram, Facebook, Twitter, LinkedIn के लिए इमेज क्रॉप, रीसाइज़ और एडिट करें। पंजीकरण की आवश्यकता नहीं। 100% मुफ्त और सुरक्षित।",
     
-    // Page titles
-    title: "मल्टी-साइज़ इमेज कटिंग टूल",
-    subtitle: "मुफ्त ऑनलाइन इमेज एडिटर",
-    subtitle2: "Instagram, LinkedIn, Twitter और अन्य सोशल मीडिया आकारों का समर्थन",
+    // Page titles - 使用高搜索量关键词
+    title: "ऑनलाइन इमेज क्रॉपर",
+    subtitle: "सोशल मीडिया के लिए फोटो क्रॉप करें - मल्टी-साइज़ इमेज एडिटर",
+    subtitle2: "Instagram, Facebook, Twitter, LinkedIn और अन्य सोशल मीडिया आकारों का समर्थन",
     
     // Upload area
     uploadTitle: "छवि अपलोड करें",
@@ -228,9 +228,9 @@ export const translations = {
     format: "फॉर्मेट",
     operations: "कार्य",
     
-    // Size configuration
-    sizeConfigTitle: "आकार कॉन्फ़िगरेशन",
-    presetSizes: "पूर्व निर्धारित आकार",
+    // Size configuration - 使用更吸引人的标题
+    sizeConfigTitle: "इमेज साइज़ सेटिंग्स",
+    presetSizes: "लोकप्रिय आकार",
     customSizes: "कस्टम आकार",
     addCustomSize: "कस्टम आकार जोड़ें",
     selectedSizes: "चयनित आकार",
@@ -263,8 +263,8 @@ export const translations = {
     sizeName: "आकार का नाम (वैकल्पिक)",
     sizeNamePlaceholder: "उदाहरण: पोस्टर आकार",
     
-    // Slice parameters
-    sliceParamsTitle: "क्रॉप पैरामीटर सेटिंग्स",
+    // Slice parameters - 使用更清晰的标题
+    sliceParamsTitle: "क्रॉप सेटिंग्स",
     sliceMode: "क्रॉप मोड",
     crop: "क्रॉप",
     fit: "फिट",
