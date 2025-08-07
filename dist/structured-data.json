@@ -1,0 +1,39 @@
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "多尺寸图片切割工具",
+  "alternateName": "Multi-size Image Cutting Tool",
+  "description": "免费在线图片切割工具，支持Instagram、LinkedIn、Twitter、Facebook等社交媒体尺寸。支持裁剪、适配、圆形三种模式，100%安全免费。",
+  "url": "https://your-domain.com",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "Web Browser",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "多尺寸支持",
+    "智能切割",
+    "移动端优化",
+    "多语言支持",
+    "批量下载",
+    "自定义尺寸",
+    "格式转换"
+  ],
+  "screenshot": "https://your-domain.com/screenshot.jpg",
+  "softwareVersion": "1.0.0",
+  "author": {
+    "@type": "Organization",
+    "name": "Multi-size Image Cutting Tool"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Multi-size Image Cutting Tool"
+  },
+  "inLanguage": ["zh-CN", "en-US", "hi-IN"],
+  "availableOnDevice": ["Desktop", "Mobile", "Tablet"],
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "datePublished": "2024-01-01",
+  "dateModified": "2024-12-19"
+} 
