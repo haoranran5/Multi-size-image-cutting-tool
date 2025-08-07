@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # 站点地图位置
-Sitemap: https://www.suihaoran.com/sitemap.xml
+Sitemap: https://www.suihaoran.com/sitemap-index.xml
 
 # 允许爬取所有页面
 Disallow:
