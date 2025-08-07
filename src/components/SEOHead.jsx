@@ -55,10 +55,10 @@ const SEOHead = () => {
         const data = {
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          "name": t('title', language),
-          "alternateName": language === 'zh' ? "多尺寸图片切割工具" : 
-                          language === 'hi' ? "मल्टी-साइज़ इमेज कटिंग टूल" : 
-                          "Multi-size Image Cutting Tool",
+                  "name": t('title', language),
+        "alternateName": language === 'zh' ? "在线图片裁剪工具" : 
+                        language === 'hi' ? "ऑनलाइन इमेज क्रॉपर" : 
+                        "Crop Image Online",
           "description": t('pageDescription', language),
           "url": "https://www.suihaoran.com",
           "applicationCategory": "MultimediaApplication",
@@ -68,29 +68,29 @@ const SEOHead = () => {
             "price": "0",
             "priceCurrency": "USD"
           },
-          "featureList": [
-            language === 'zh' ? "多尺寸支持" : language === 'hi' ? "मल्टी-साइज़ समर्थन" : "Multi-size Support",
-            language === 'zh' ? "智能切割" : language === 'hi' ? "स्मार्ट कटिंग" : "Smart Cutting",
-            language === 'zh' ? "移动端优化" : language === 'hi' ? "मोबाइल ऑप्टिमाइज़ेशन" : "Mobile Optimization",
-            language === 'zh' ? "多语言支持" : language === 'hi' ? "मल्टी-लैंग्वेज समर्थन" : "Multi-language Support",
-            language === 'zh' ? "批量下载" : language === 'hi' ? "बल्क डाउनलोड" : "Batch Download",
-            language === 'zh' ? "自定义尺寸" : language === 'hi' ? "कस्टम साइज़" : "Custom Sizes",
-            language === 'zh' ? "格式转换" : language === 'hi' ? "फॉर्मेट कन्वर्जन" : "Format Conversion"
-          ],
+                  "featureList": [
+          language === 'zh' ? "图片裁剪" : language === 'hi' ? "इमेज क्रॉपिंग" : "Image Cropping",
+          language === 'zh' ? "照片调整" : language === 'hi' ? "फोटो रीसाइज़िंग" : "Photo Resizing",
+          language === 'zh' ? "社交媒体格式" : language === 'hi' ? "सोशल मीडिया फॉर्मेट्स" : "Social Media Formats",
+          language === 'zh' ? "批量处理" : language === 'hi' ? "बैच प्रोसेसिंग" : "Batch Processing",
+          language === 'zh' ? "自定义尺寸" : language === 'hi' ? "कस्टम साइज़" : "Custom Sizes",
+          language === 'zh' ? "格式转换" : language === 'hi' ? "फॉर्मेट कन्वर्जन" : "Format Conversion",
+          language === 'zh' ? "移动端优化" : language === 'hi' ? "मोबाइल ऑप्टिमाइज़ेशन" : "Mobile Optimized"
+        ],
           "screenshot": "https://www.suihaoran.com/screenshot.jpg",
           "softwareVersion": "1.0.0",
-          "author": {
-            "@type": "Organization",
-            "name": language === 'zh' ? "多尺寸图片切割工具" : 
-                    language === 'hi' ? "मल्टी-साइज़ इमेज कटिंग टूल" : 
-                    "Multi-size Image Cutting Tool"
-          },
-          "publisher": {
-            "@type": "Organization",
-            "name": language === 'zh' ? "多尺寸图片切割工具" : 
-                    language === 'hi' ? "मल्टी-साइज़ इमेज कटिंग टूल" : 
-                    "Multi-size Image Cutting Tool"
-          },
+                  "author": {
+          "@type": "Organization",
+          "name": language === 'zh' ? "在线图片裁剪工具" : 
+                  language === 'hi' ? "ऑनलाइन इमेज क्रॉपर" : 
+                  "Crop Image Online"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": language === 'zh' ? "在线图片裁剪工具" : 
+                  language === 'hi' ? "ऑनलाइन इमेज क्रॉपर" : 
+                  "Crop Image Online"
+        },
           "inLanguage": language === 'zh' ? "zh-CN" : language === 'hi' ? "hi-IN" : "en-US",
           "availableOnDevice": ["Desktop", "Mobile", "Tablet"],
           "browserRequirements": "Requires JavaScript. Requires HTML5.",

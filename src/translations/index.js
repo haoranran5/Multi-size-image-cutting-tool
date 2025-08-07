@@ -1,10 +1,10 @@
 export const translations = {
   zh: {
     // SEO相关 - 使用英语以便搜索引擎检索
-    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
-    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
-    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
-    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
     
     // 页面标题
     title: "多尺寸图片切割工具",
@@ -103,10 +103,10 @@ export const translations = {
   
   en: {
     // SEO related
-    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
-    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
-    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
-    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
     
     // Page titles
     title: "Multi-size Image Cutting Tool",
@@ -205,10 +205,10 @@ export const translations = {
   
   hi: {
     // SEO related - Use English for better search engine indexing
-    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
-    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
-    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
-    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    pageTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    pageDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
+    ogTitle: "Crop Image Online - Free Image Cropper & Photo Editor",
+    ogDescription: "Free online image cropper and photo editor. Crop, resize, and edit images for social media. No registration required. 100% free and secure.",
     
     // Page titles
     title: "मल्टी-साइज़ इमेज कटिंग टूल",
