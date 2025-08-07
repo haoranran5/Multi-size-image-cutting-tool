@@ -1,9 +1,15 @@
 export const translations = {
   zh: {
+    // SEO相关 - 使用英语以便搜索引擎检索
+    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
+    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
+    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
+    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    
     // 页面标题
-    title: "Crop Image Online",
-    subtitle: "Crop JPG, PNG, WebP - Custom Sizes",
-    subtitle2: "Crop for Social Media: Instagram, LinkedIn, Twitter",
+    title: "多尺寸图片切割工具",
+    subtitle: "免费在线图片编辑工具",
+    subtitle2: "支持Instagram、LinkedIn、Twitter等社交媒体尺寸",
     
     // 上传区域
     uploadTitle: "上传图片",
@@ -96,10 +102,16 @@ export const translations = {
   },
   
   en: {
+    // SEO related
+    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
+    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
+    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
+    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    
     // Page titles
-    title: "Crop Image Online",
-    subtitle: "Crop JPG, PNG, WebP - Custom Sizes",
-    subtitle2: "Crop for Social Media: Instagram, LinkedIn, Twitter",
+    title: "Multi-size Image Cutting Tool",
+    subtitle: "Free Online Image Editor",
+    subtitle2: "Support Instagram, LinkedIn, Twitter and Other Social Media Sizes",
     
     // Upload area
     uploadTitle: "Upload Image",
@@ -192,10 +204,16 @@ export const translations = {
   },
   
   hi: {
+    // SEO related - Use English for better search engine indexing
+    pageTitle: "Multi-size Image Cutting Tool - Free Online Image Editor | Support Instagram, LinkedIn and Other Social Media Sizes",
+    pageDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure. No registration required, start using now!",
+    ogTitle: "Multi-size Image Cutting Tool - Free Online Tool",
+    ogDescription: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
+    
     // Page titles
-    title: "ऑनलाइन इमेज क्रॉप",
-    subtitle: "JPG, PNG, WebP क्रॉप करें - कस्टम साइज़",
-    subtitle2: "सोशल मीडिया के लिए क्रॉप: Instagram, LinkedIn, Twitter",
+    title: "मल्टी-साइज़ इमेज कटिंग टूल",
+    subtitle: "मुफ्त ऑनलाइन इमेज एडिटर",
+    subtitle2: "Instagram, LinkedIn, Twitter और अन्य सोशल मीडिया आकारों का समर्थन",
     
     // Upload area
     uploadTitle: "छवि अपलोड करें",

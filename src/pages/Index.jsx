@@ -11,6 +11,7 @@ import { Progress } from '@/components/ui/progress';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import ImagePreview from '@/components/ImagePreview';
+import SEOHead from '@/components/SEOHead';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t } from '@/translations';
 
@@ -315,9 +316,10 @@ const ImageSlicer = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 py-2 sm:py-4 md:py-8">
+      <SEOHead />
       <div className="container mx-auto px-2 sm:px-4 max-w-6xl">
         <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-center mb-2 text-blue-600">{t('title', language)}</h1>
-        <p className="text-center text-xs sm:text-sm md:text-base text-gray-600 mb-2 px-2">{t('subtitle', language)}</p>
+        <h2 className="text-center text-xs sm:text-sm md:text-base text-gray-600 mb-2 px-2">{t('subtitle', language)}</h2>
         <p className="text-center text-xs text-gray-500 mb-4 sm:mb-6 md:mb-8 px-2">{t('subtitle2', language)}</p>
         
         <div className="flex flex-col xl:flex-row gap-3 sm:gap-4 md:gap-6">
@@ -328,7 +330,7 @@ const ImageSlicer = () => {
               <CardHeader className="pb-3 sm:pb-4">
                 <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                   <UploadIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  {t('uploadTitle', language)}
+                  <h2 className="text-base sm:text-lg font-semibold">{t('uploadTitle', language)}</h2>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 sm:p-4 md:p-6">
@@ -410,7 +412,7 @@ const ImageSlicer = () => {
               <CardHeader className="pb-3 sm:pb-4">
                 <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
                   <ScissorsIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  {t('sizeConfigTitle', language)}
+                  <h2 className="text-base sm:text-lg font-semibold">{t('sizeConfigTitle', language)}</h2>
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3 sm:p-4 md:p-6">
@@ -661,7 +663,9 @@ const ImageSlicer = () => {
             {processing && (
               <Card className="mb-3 sm:mb-4 md:mb-6">
                 <CardHeader className="pb-2 sm:pb-3">
-                  <CardTitle className="text-sm sm:text-base md:text-lg">{t('processing', language)}</CardTitle>
+                  <CardTitle className="text-sm sm:text-base md:text-lg">
+                    <h2 className="text-sm sm:text-base md:text-lg font-semibold">{t('processing', language)}</h2>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 sm:p-4 md:p-6">
                   <Progress value={progress} className="h-2 sm:h-3" />
@@ -676,7 +680,9 @@ const ImageSlicer = () => {
             {!processing && results.length === 0 && (
               <Card>
                 <CardHeader className="pb-2 sm:pb-3">
-                  <CardTitle className="text-sm sm:text-base md:text-lg">{t('resultPreviewTitle', language)}</CardTitle>
+                  <CardTitle className="text-sm sm:text-base md:text-lg">
+                    <h2 className="text-sm sm:text-base md:text-lg font-semibold">{t('resultPreviewTitle', language)}</h2>
+                  </CardTitle>
                 </CardHeader>
                 <CardContent className="p-3 sm:p-4 md:p-6">
                   <div className="flex flex-col items-center justify-center h-32 sm:h-40 md:h-48 lg:h-64 bg-gray-50 rounded-lg border-2 border-dashed border-gray-300">
@@ -695,7 +701,9 @@ const ImageSlicer = () => {
               <Card>
                 <CardHeader className="pb-2 sm:pb-3">
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0 mb-2">
-                    <CardTitle className="text-sm sm:text-base md:text-lg">{t('sliceResults', language)}</CardTitle>
+                    <CardTitle className="text-sm sm:text-base md:text-lg">
+                      <h2 className="text-sm sm:text-base md:text-lg font-semibold">{t('sliceResults', language)}</h2>
+                    </CardTitle>
 
                     <Button 
                       variant="secondary"
