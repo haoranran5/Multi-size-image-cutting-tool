@@ -10,10 +10,10 @@ export const seoConfig = {
     nameEn: "Multi-size Image Cutting Tool",
     description: "免费在线图片切割工具，支持Instagram、LinkedIn、Twitter、Facebook等社交媒体尺寸。支持裁剪、适配、圆形三种模式，100%安全免费。",
     descriptionEn: "Free online image cutting tool supporting Instagram, LinkedIn, Twitter, Facebook and other social media sizes. Supports crop, fit, and circle modes. 100% free and secure.",
-    url: "https://your-domain.com",
-    logo: "https://your-domain.com/favicon.svg",
-    ogImage: "https://your-domain.com/og-image.jpg",
-    screenshot: "https://your-domain.com/screenshot.jpg",
+    url: "https://www.suihaoran.com",
+    logo: "https://www.suihaoran.com/favicon.svg",
+    ogImage: "https://www.suihaoran.com/og-image.jpg",
+    screenshot: "https://www.suihaoran.com/screenshot.jpg",
   },
 
   // 多语言配置
@@ -77,7 +77,7 @@ export const seoConfig = {
 
   // 站点地图配置
   sitemap: {
-    url: "https://your-domain.com/sitemap.xml",
+    url: "https://www.suihaoran.com/sitemap.xml",
     lastmod: "2024-12-19",
     changefreq: "weekly"
   },
